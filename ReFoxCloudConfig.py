@@ -38,7 +38,8 @@ class ReFoxCloudConfigMod(loader.Module):
         )
     }
 
-    async def decodeconfig(self, message):
+    @loader.command(alias="rfccfg")
+    async def rfccfg(self, message):
         """Декодировать конфигурацию сервера из base64 кода"""
         args = utils.get_args_raw(message)
         if not args:
