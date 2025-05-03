@@ -13,16 +13,16 @@ class MusicDLMod(loader.Module):
     strings = {
         "name": "FoxMusicDL",
         "args": "🦊 <b>Fox needs to know what song to find! Provide a title.</b>",
-        "loading": "🦊 <b>Fox is searching for</b> <code>{}</code> <b>in the forest...</b>",
-        "404": "🦊 <b>Fox couldn't find</b> <code>{}</code> <b>in the forest. Maybe try another song?</b>",
+        "loading": "🦊 <b>Fox is searching for music by request:</b> <code>{}</code>\n\n<i>Please wait while fox digs through the forest...</i>",
+        "404": "🦊 <b>Fox couldn't find</b> <code>{}</code><b>. Maybe try another song?</b>",
         "error": "🦊 <b>Fox encountered a problem while searching:</b> <code>{}</code>",
         "success": "🦊 <b>Fox found the song!</b> {}",
     }
 
     strings_ru = {
         "args": "🦊 <b>Лису нужно знать, какую песню искать! Укажите название.</b>",
-        "loading": "🦊 <b>Лис ищет</b> <code>{}</code> <b>в лесу...</b>",
-        "404": "🦊 <b>Лис не смог найти</b> <code>{}</code> <b>в лесу. Может, попробуешь другую песню?</b>",
+        "loading": "🦊 <b>Лис ищет музыку по запросу:</b> <code>{}</code>\n\n<i>Пожалуйста, подождите, пока лис обыщет весь лес...</i>",
+        "404": "🦊 <b>Лис не смог найти</b> <code>{}</code><b>. Может, попробуешь другую песню?</b>",
         "error": "🦊 <b>Лис столкнулся с проблемой при поиске:</b> <code>{}</code>",
         "success": "🦊 <b>Лис нашёл песню!</b>",
     }
