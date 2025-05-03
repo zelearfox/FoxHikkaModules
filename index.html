@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxModules</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #f3f4f6;
+        }
+        .file-item:hover {
+            background-color: #1f1f1f;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="max-w-3xl mx-auto">
+        <h1 class="text-2xl font-bold mb-6 text-orange-400 flex items-center">
+            FoxModules
+        </h1>
+        
+        <div class="bg-[#111111] rounded-lg shadow-lg overflow-hidden border border-[#333]">
+            <div class="p-4 border-b border-[#333] bg-[#1a1a1a]">
+                <h2 class="font-semibold text-orange-300">Доступные модули</h2>
+            </div>
+            
+            <div id="files-container" class="divide-y divide-[#333]">
+                <div class="p-4 text-center text-gray-500">Загрузка модулей...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/full.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const modules = data.split('\n').filter(module => module.trim() !== '');
+                    const filesContainer = document.getElementById('files-container');
+                    
+                    if (modules.length === 0) {
+                        filesContainer.innerHTML = '<div class="p-4 text-center text-gray-500">Нет доступных модулей</div>';
+                        return;
+                    }
+                    
+                    filesContainer.innerHTML = '';
+                    
+                    modules.forEach(module => {
+                        const moduleName = module.trim();
+                        const fileElement = document.createElement('a');
+                        fileElement.href = `/${moduleName}.py`;
+                        fileElement.className = 'file-item block p-4 hover:bg-[#1a1a1a] transition-colors flex items-center group';
+                        fileElement.innerHTML = `
+                            <svg class="w-6 h-6 mr-3 text-orange-400 group-hover:text-orange-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <span class="group-hover:text-orange-300 transition-colors">${moduleName}.py</span>
+                        `;
+                        filesContainer.appendChild(fileElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки модулей:', error);
+                    document.getElementById('files-container').innerHTML = `
+                        <div class="p-4 text-center text-red-400">
+                            Ошибка загрузки списка модулей
+                        </div>
+                    `;
+                });
+        });
+    </script>
+</body>
+</html>
