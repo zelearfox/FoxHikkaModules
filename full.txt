@@ -2,3 +2,4 @@ FoxMinecraft
 ReFoxCloudConfig
 ProxmoxVE
 WhoIs
+FoxMusicDL
